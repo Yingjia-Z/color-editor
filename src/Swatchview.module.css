@@ -1,4 +1,4 @@
-.root {
+/* .root {
   padding: 10px;
   border: 1px solid grey;
   background-color: white;
@@ -7,10 +7,10 @@
   display: flex;
   align-content: flex-start;
   overflow: scroll;
-}
+} */
 
 /* the number squares */
-div.root > div {
+/* div.root > div {
   margin: 5px;
   padding: 10px;
   flex: 0 0 auto;
@@ -19,7 +19,7 @@ div.root > div {
 div.root > div:hover {
   color: red;
   cursor: grab;
-}
+} */
 
 .swatchview {
   padding: 10px;

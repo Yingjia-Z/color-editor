@@ -75,6 +75,47 @@ export const decrement = () => {
   }
 };
 
+// prevent 'e', '+', and any other non-numeric key from being entered
+export const filterInvalid = (e: KeyboardEvent) => {
+  const invalidChars = ["e", "E", "+", "-", "."];
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+};
+
+export const checkText = (str: string, e: Event) => {
+  let input = e.target as HTMLInputElement;
+  let degree = input.value;
+
+  degree = degree.replace(/\D/g, "");
+  // degree = parseInt((e.target as HTMLInputElement).value, 10);
+  degree = parseInt(degree, 10);
+
+  console.log(degree);
+  if (isNaN(degree) || degree < 0) {
+    degree = 0;
+  } else if (str === "hue" && degree > 360) {
+    degree = 360;
+  } else if ((str === "sat" || str === "lum") && degree > 100) {
+    degree = 100;
+  }
+
+  // set the cleaned value back to the event so previous numbers entered won't be saved
+  input.value = degree.toString();
+
+  // Update the corresponding state
+  if (str === "hue") {
+    hue.value = degree;
+  } else if (str === "sat") {
+    sat.value = degree;
+  } else if (str === "lum") {
+    lum.value = degree;
+  }
+  swatches.value[selected.value - 1].hue = hue.value;
+  swatches.value[selected.value - 1].sat = sat.value;
+  swatches.value[selected.value - 1].lum = lum.value;
+};
+
 // local helper functions
 const createSwatch = () => {
   swatches.value = [

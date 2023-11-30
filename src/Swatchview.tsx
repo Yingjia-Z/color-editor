@@ -4,7 +4,7 @@ import * as Model from "./AppState";
 
 import style from "./Swatchview.module.css";
 
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 type SwatchViewProps = {
   colour?: string;
@@ -28,6 +28,7 @@ export default function SwatchView({ colour = "grey" }: SwatchViewProps) {
           key={i}
           swatch={swatch}
           onClick={() => handleSwatchClick(i)}
+          isSelected={Model.selected.value - 1 === i}
         />
       ))}
     </div>
@@ -38,8 +39,12 @@ type SwatchItemProps = {
   swatch: Model.Swatch;
 };
 
-function SwatchItem({ swatch, onClick }: SwatchItemProps) {
-  const hslColour = `hsl(${swatch.hue}deg, ${swatch.sat}%, ${swatch.lum}%)`;
+function SwatchItem({ swatch, onClick, isSelected }: SwatchItemProps) {
+  const hueValue = isSelected ? Model.hue.value : swatch.hue;
+  const satValue = isSelected ? Model.sat.value : swatch.sat;
+  const lumValue = isSelected ? Model.lum.value : swatch.lum;
+  const hslColour = `hsl(${hueValue}deg, ${satValue}%, ${lumValue}%)`;
+
   const swatchBorder = swatch.focus ? "1px solid black" : "1px solid lightgrey";
 
   return (
