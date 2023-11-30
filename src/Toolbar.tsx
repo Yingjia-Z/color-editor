@@ -6,8 +6,8 @@ import style from "./Toolbar.module.css";
 export default function ToolBarView() {
   return (
     <div class={style.root}>
-      <button onClick={() => increment()}>Add</button>
-      <button onClick={() => decrement()}>Delete</button>
+      <button disabled={count.value === 16} onClick={() => increment()}>Add</button>
+      <button disabled={count.value === 1} onClick={() => decrement()}>Delete</button>
     </div>
   );
 }

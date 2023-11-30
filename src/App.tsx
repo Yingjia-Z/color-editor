@@ -28,7 +28,7 @@ export default function App() {
         {/* views */}
         <ToolBarView />
         <EditorView />
-        <RightView colour="lightblue" />
+        <RightView />
         <StatusBarView />
       </div>
     </div>

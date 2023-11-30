@@ -1,13 +1,49 @@
-.root {
+.editor {
   padding: 10px;
-  border: 1px solid grey;
-  background-color: white;
-  flex: 1 1 0;
+  gap: 10px;
+  background-color: whitesmoke;
+  flex: 1 1 50%;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-button {
-  min-width: 80px;
+.coloredrect {
+  border: 1px solid black;
+  flex: 1 1 50%;
+  align-self: stretch;
+}
+
+.hslform {
+  padding: 10px;
+  border: 1px solid grey;
+  flex: 1 1 50%;
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+/* styling for each form row */
+.hslform > form > div {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  padding: 5px;
+}
+
+label {
+  display: block;
+  width: 40px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.textfield {
+  width: 50px;
+}
+
+.slider {
+  flex: 1 1; /* takes up the remaining space */
+  margin-left: 10px; /* 10px away from the textfield */
 }

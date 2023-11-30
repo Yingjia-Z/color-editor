@@ -1,15 +1,19 @@
 .root {
-    padding: 10px;
-    height: 50px;
-    background-color: lightgrey;
-    flex: 0 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-  }
-  
-  button {
-    width: 100px;
-  }
-  
+  padding: 10px;
+  height: 50px;
+  background-color: lightgrey;
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+button {
+  width: 100px;
+}
+
+/* attributes of button when disabled  */
+button:disabled {
+  color: grey;
+}
