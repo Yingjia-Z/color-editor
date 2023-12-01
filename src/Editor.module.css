@@ -15,7 +15,7 @@
   align-self: stretch;
 }
 
-.hslform {
+.colorform {
   padding: 10px;
   border: 1px solid grey;
   flex: 1 1 50%;
@@ -25,7 +25,7 @@
 }
 
 /* styling for each form row */
-.hslform > form > div {
+.colorform>form>div {
   display: flex;
   flex: 1 1 0;
   align-items: center;
@@ -39,11 +39,42 @@ label {
   margin-right: 10px;
 }
 
+.radioLabel {
+  display: flex;
+  width: 140px;
+  text-align: left;
+  margin-left: 10px;
+  align-items: left;
+  padding: 10px;
+  gap: 5px;
+}
+
 .textfield {
   width: 50px;
 }
 
 .slider {
-  flex: 1 1; /* takes up the remaining space */
-  margin-left: 10px; /* 10px away from the textfield */
+  flex: 1 1;
+  /* takes up the remaining space */
+  margin-left: 10px;
+  /* 10px away from the textfield */
+}
+
+.hexTextfield {
+  width: 100px;
+  align-self: left;
+  padding: 5px;
+  font-size: 19px;
+  margin-left: 40px;
+  margin-top: 10px;
+  flex: 0 0;
+}
+
+.hexError {
+  align-self: left;
+  padding: 5px;
+  margin-left: 40px;
+  margin-top: 10px;
+  flex: 0 0;
+  color: red;
 }
