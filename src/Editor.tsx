@@ -262,7 +262,7 @@ export default function EditorView() {
 
   // // changes to color values trigger changes to canvas
   // const updateCanvas = (x: number, y: number) => {
-  //   // console.log(`canvasHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
+  //   // console.log(`squareHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
   //   setPoint({ x: x, y: y });
   //   // Model.sat.value = Math.floor(x / 2);
   //   // Model.lum.value = Math.floor((200 - y) / 2);
@@ -270,12 +270,23 @@ export default function EditorView() {
   //   // Model.updateSwatches();
   // };
 
-  // changes on canvas trigger changes to color values
-  const canvasHandler = (x: number, y: number) => {
-    console.log(`canvasHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
+  // changes on sat-lum-square trigger changes to color values
+  const squareHandler = (x: number, y: number) => {
+    console.log(`squareHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
     setPoint({ x: x, y: y });
     Model.sat.value = Math.floor(x / 2);
     Model.lum.value = Math.floor((200 - y) / 2);
+    Model.updateColorValue();
+    Model.updateSwatches();
+  };
+
+  const rectHandler = (x: number) => {
+    console.log(`rectHandler (${hueValue}) => (${x})`);
+    // setPoint({ x: x, y: y });
+    setHueValue(x);
+    // Model.sat.value = Math.floor(x / 2);
+    // Model.lum.value = Math.floor((200 - y) / 2);
+    Model.hue.value = x;
     Model.updateColorValue();
     Model.updateSwatches();
   };
@@ -293,9 +304,9 @@ export default function EditorView() {
           point={{ x: Model.sat.value * 2, y: 200 - Model.lum.value * 2 }}
           // width="200"
           // height="200"
-          callback={canvasHandler}
+          callback={squareHandler}
         />
-        <HueRect />
+        <HueRect selectedHue={Model.hue.value} callback={rectHandler} />
       </div>
       <div class={style.colorform}>
         <div class={style.radioLabel}>
