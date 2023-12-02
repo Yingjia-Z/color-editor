@@ -74,12 +74,6 @@ export function SatLumSquare({
 
   return (
     <>
-      {/* <div
-          class={`${style.satlumsquare} ${style.square1}`}
-          style={{
-            background: `linear-gradient(to top, hsla(${selectedHue}, 50%, 0%, 1), hsla(${selectedHue}, 50%, 100%, 0))`,
-          }}
-        /> */}
       <canvas
         class={`${style.satlumsquare} ${style.square1}`}
         style={{
@@ -91,18 +85,12 @@ export function SatLumSquare({
         onMouseMove={moveHandler}
         onClick={clickHandler}
       />
-      {/* <div
-          class={`${style.satlumsquare} ${style.square2}`}
-          style={{
-            background: `linear-gradient(to right, hsla(${selectedHue}, 0%, 50%, 0), hsla(${selectedHue}, 100%, 50%, 1))`,
-          }}
-        /> */}
       <canvas
         class={`${style.satlumsquare} ${style.square2}`}
         style={{
           background: `linear-gradient(to right, hsla(${selectedHue}, 0%, 50%, 0), hsla(${selectedHue}, 100%, 50%, 1))`,
         }}
-        ref={canvasRef}
+        // ref={canvasRef}
         width={width}
         height={height}
         onMouseMove={moveHandler}
