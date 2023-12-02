@@ -1,9 +1,10 @@
 // app state
 import * as Model from "./AppState";
+import { SatLumSquare, HueRect } from "./ColoredRect";
 
 import style from "./Editor.module.css";
 
-import { useEffect, useState } from "preact/hooks";
+import { useRef, useEffect, useState, useLayoutEffect } from "preact/hooks";
 
 export default function EditorView() {
   const hslColour = `hsl(${Model.hue}deg, ${Model.sat}%, ${Model.lum}%)`;
@@ -80,6 +81,14 @@ export default function EditorView() {
               value={satValue}
               onInput={(e) => Model.checkColor("sat", e)}
               onChange={setSatValue(Model.sat.value)}
+              // onInput={(e) => {
+              //   Model.checkColor("sat", e);
+              //   // use e.target.value to get the current input value
+              //   const newSatValue = e.target.value;
+              //   setSatValue(newSatValue); // Update state with the new value
+              //   updateCanvas(newSatValue * 2, 200 - Model.lum.value * 2); // Use the new value for the canvas update
+              // }}
+              // onChange={setSatValue(Model.sat.value)}
               onKeyDown={(e) => Model.filterInvalid(e)}
             />
             <input
@@ -91,6 +100,14 @@ export default function EditorView() {
               value={satValue}
               onInput={(e) => Model.checkColor("sat", e)}
               onChange={setSatValue(Model.sat.value)}
+              // onInput={(e) => {
+              //   Model.checkColor("sat", e);
+              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
+              // }}
+              // onChange={(e) => {
+              //   setSatValue(Model.sat.value);
+              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
+              // }}
             />
           </div>
 
@@ -103,7 +120,15 @@ export default function EditorView() {
               max="100"
               class={style.textfield}
               value={lumValue}
-              onInput={(e) => Model.checkColor("lum", e)}
+              // onInput={(e) => Model.checkColor("lum", e)}
+
+              // onInput={(e) => {
+              //   Model.checkColor("lum", e);
+              //   // use e.target.value to get the current input value
+              //   const newLumValue = e.target.value;
+              //   setLumValue(newLumValue); // Update state with the new value
+              //   updateCanvas(Model.sat.value * 2, 200 - newLumValue * 2); // Use the new value for the canvas update
+              // }}
               onChange={setLumValue(Model.lum.value)}
               onKeyDown={(e) => Model.filterInvalid(e)}
             />
@@ -114,6 +139,14 @@ export default function EditorView() {
               max="100"
               class={style.slider}
               value={lumValue}
+              // onInput={(e) => {
+              //   Model.checkColor("lum", e);
+              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
+              // }}
+              // onChange={(e) => {
+              //   setLumValue(Model.lum.value);
+              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
+              // }}
               onInput={(e) => Model.checkColor("lum", e)}
               onChange={setLumValue(Model.lum.value)}
             />
@@ -222,14 +255,48 @@ export default function EditorView() {
     return null;
   };
 
+  const [point, setPoint] = useState({
+    x: Model.sat.value * 2,
+    y: 200 - Model.lum.value * 2,
+  });
+
+  // // changes to color values trigger changes to canvas
+  // const updateCanvas = (x: number, y: number) => {
+  //   // console.log(`canvasHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
+  //   setPoint({ x: x, y: y });
+  //   // Model.sat.value = Math.floor(x / 2);
+  //   // Model.lum.value = Math.floor((200 - y) / 2);
+  //   // Model.updateColorValue();
+  //   // Model.updateSwatches();
+  // };
+
+  // changes on canvas trigger changes to color values
+  const canvasHandler = (x: number, y: number) => {
+    console.log(`canvasHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
+    setPoint({ x: x, y: y });
+    Model.sat.value = Math.floor(x / 2);
+    Model.lum.value = Math.floor((200 - y) / 2);
+    Model.updateColorValue();
+    Model.updateSwatches();
+  };
+
   return (
     <div class={style.editor}>
       <div
         class={style.coloredrect}
-        style={{
-          background: hslColour,
-        }}
-      ></div>
+        // style={{
+        //   background: hslColour,
+        // }}
+      >
+        <SatLumSquare
+          selectedHue={Model.hue.value}
+          point={{ x: Model.sat.value * 2, y: 200 - Model.lum.value * 2 }}
+          // width="200"
+          // height="200"
+          callback={canvasHandler}
+        />
+        <HueRect />
+      </div>
       <div class={style.colorform}>
         <div class={style.radioLabel}>
           <input

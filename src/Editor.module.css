@@ -13,6 +13,9 @@
   border: 1px solid black;
   flex: 1 1 50%;
   align-self: stretch;
+  gap: 10px;
+  align-items: left;
+  display: flex;
 }
 
 .colorform {
@@ -25,7 +28,7 @@
 }
 
 /* styling for each form row */
-.colorform>form>div {
+.colorform > form > div {
   display: flex;
   flex: 1 1 0;
   align-items: center;
@@ -77,4 +80,29 @@ label {
   margin-top: 10px;
   flex: 0 0;
   color: red;
+}
+
+.satlumsquare {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  margin-right: 0px;
+}
+
+.square1 {
+  position: absolute;
+}
+
+.square2 {
+  position: relative;
+  mix-blend-mode: overlay;
+}
+
+.huerect {
+  width: 20px;
+  height: 200px;
+  margin: 10px;
+  margin-left: 0px;
+  background: linear-gradient(0deg, #f00, #f0f, #00f, #0ff, #0f0, #ff0, #f00);
+  position: relative;
 }

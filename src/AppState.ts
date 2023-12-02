@@ -46,21 +46,20 @@ const createSwatch = () => {
   swatches.value = [...swatches.value, newSwatch];
 };
 
-// local helper function
-// update RGB and HEX value for app state from new HSL value
-const updateColorValue = () => {
-  let updatedRGB = hslToRgb(hue.value, sat.value, lum.value);
-  let updatedHEX = rgbToHex(updatedRGB);
-  rgb.value = updatedRGB;
-  hex.value = updatedHEX;
-};
-
-const updateSwatches = () => {
+export const updateSwatches = () => {
   swatches.value[selected.value - 1].hue = hue.value;
   swatches.value[selected.value - 1].sat = sat.value;
   swatches.value[selected.value - 1].lum = lum.value;
   swatches.value[selected.value - 1].rgb = rgb.value;
   swatches.value[selected.value - 1].hex = hex.value;
+};
+
+// update RGB and HEX value for app state from new HSL value
+export const updateColorValue = () => {
+  let updatedRGB = hslToRgb(hue.value, sat.value, lum.value);
+  let updatedHEX = rgbToHex(updatedRGB);
+  rgb.value = updatedRGB;
+  hex.value = updatedHEX;
 };
 
 export const selectSwatch = (swatchIndex: number) => {
@@ -223,7 +222,7 @@ export const updateHex = (text: string) => {
   // swatches.value[selected.value - 1].rgb = rgb.value;
   // swatches.value[selected.value - 1].hex = hex.value;
   updateSwatches();
-}
+};
 
 // local helper function
 // const createSwatch = () => {
