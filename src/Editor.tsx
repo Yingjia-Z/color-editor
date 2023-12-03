@@ -120,7 +120,7 @@ export default function EditorView() {
               max="100"
               class={style.textfield}
               value={lumValue}
-              // onInput={(e) => Model.checkColor("lum", e)}
+              onInput={(e) => Model.checkColor("lum", e)}
 
               // onInput={(e) => {
               //   Model.checkColor("lum", e);

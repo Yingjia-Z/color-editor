@@ -49,20 +49,50 @@ export function SatLumSquare({
     // gc.arc(movePoint.x, movePoint.y, 5, 0, 2 * Math.PI);
     // gc.fill();
 
-    // property  point
-    // Draw white circle for visibility on dark backgrounds
-    gc.strokeStyle = "white";
-    gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
-    gc.beginPath();
-    gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-    gc.stroke();
+    // // property  point
+    // // Draw white circle for visibility on dark backgrounds
+    // gc.strokeStyle = "white";
+    // gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+    // gc.beginPath();
+    // gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+    // gc.stroke();
 
-    // Draw black circle
-    gc.strokeStyle = "black";
-    gc.lineWidth = 2; // Standard width for the black stroke
-    gc.beginPath();
-    gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-    gc.stroke();
+    // // Draw black circle
+    // gc.strokeStyle = "black";
+    // gc.lineWidth = 2; // Standard width for the black stroke
+    // gc.beginPath();
+    // gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+    // gc.stroke();
+
+    if (point.y < 100) {
+      // Draw white circle for visibility on dark backgrounds
+      gc.strokeStyle = "white";
+      gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+      gc.beginPath();
+      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+      gc.stroke();
+
+      // Draw black circle
+      gc.strokeStyle = "black";
+      gc.lineWidth = 2; // Standard width for the black stroke
+      gc.beginPath();
+      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+      gc.stroke();
+    } else {
+      // Draw white circle for visibility on dark backgrounds
+      gc.strokeStyle = "black";
+      gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+      gc.beginPath();
+      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+      gc.stroke();
+
+      // Draw black circle
+      gc.strokeStyle = "white";
+      gc.lineWidth = 2; // Standard width for the black stroke
+      gc.beginPath();
+      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+      gc.stroke();
+    }
 
     // show points
     // gc.font = "14px sans-serif";

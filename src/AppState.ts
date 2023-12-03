@@ -64,7 +64,9 @@ export const updateColorValue = () => {
 
 export const selectSwatch = (swatchIndex: number) => {
   selected.value = swatchIndex + 1;
+  // reset focus for every swatch
   swatches.value.map((s) => (s.focus = false));
+  // select the selected swatch
   swatches.value[swatchIndex].focus = true;
   // update HSL value for app state
   hue.value = swatches.value[swatchIndex].hue;
