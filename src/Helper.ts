@@ -51,7 +51,6 @@ export function hslToRgb(hue, saturation, lightness) {
 }
 
 export function rgbToHex(rgb) {
-  //   console.log(rgb);
   let r = rgb.r;
   let g = rgb.g;
   let b = rgb.b;

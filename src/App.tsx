@@ -1,7 +1,5 @@
 import { render } from "preact";
 
-// import LeftView from "./Left";
-// import RightView from "./Right";
 import ToolBarView from "./Toolbar";
 import EditorView from "./Editor";
 import RightView from "./Swatchview";

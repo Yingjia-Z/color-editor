@@ -28,11 +28,7 @@ export default function EditorView() {
 
     // only if valid, update the app state
     if (Model.checkHex(newHex)) {
-      console.log(newHex);
-      console.log(Model.hex.value);
-      // Model.hex.value = newHex;
       Model.updateHex(newHex);
-      console.log(Model.hex.value);
     }
   };
 
@@ -81,14 +77,6 @@ export default function EditorView() {
               value={satValue}
               onInput={(e) => Model.checkColor("sat", e)}
               onChange={setSatValue(Model.sat.value)}
-              // onInput={(e) => {
-              //   Model.checkColor("sat", e);
-              //   // use e.target.value to get the current input value
-              //   const newSatValue = e.target.value;
-              //   setSatValue(newSatValue); // Update state with the new value
-              //   updateCanvas(newSatValue * 2, 200 - Model.lum.value * 2); // Use the new value for the canvas update
-              // }}
-              // onChange={setSatValue(Model.sat.value)}
               onKeyDown={(e) => Model.filterInvalid(e)}
             />
             <input
@@ -100,14 +88,6 @@ export default function EditorView() {
               value={satValue}
               onInput={(e) => Model.checkColor("sat", e)}
               onChange={setSatValue(Model.sat.value)}
-              // onInput={(e) => {
-              //   Model.checkColor("sat", e);
-              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
-              // }}
-              // onChange={(e) => {
-              //   setSatValue(Model.sat.value);
-              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
-              // }}
             />
           </div>
 
@@ -121,14 +101,6 @@ export default function EditorView() {
               class={style.textfield}
               value={lumValue}
               onInput={(e) => Model.checkColor("lum", e)}
-
-              // onInput={(e) => {
-              //   Model.checkColor("lum", e);
-              //   // use e.target.value to get the current input value
-              //   const newLumValue = e.target.value;
-              //   setLumValue(newLumValue); // Update state with the new value
-              //   updateCanvas(Model.sat.value * 2, 200 - newLumValue * 2); // Use the new value for the canvas update
-              // }}
               onChange={setLumValue(Model.lum.value)}
               onKeyDown={(e) => Model.filterInvalid(e)}
             />
@@ -139,14 +111,6 @@ export default function EditorView() {
               max="100"
               class={style.slider}
               value={lumValue}
-              // onInput={(e) => {
-              //   Model.checkColor("lum", e);
-              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
-              // }}
-              // onChange={(e) => {
-              //   setLumValue(Model.lum.value);
-              //   updateCanvas(Model.sat.value * 2, 200 - Model.lum.value * 2);
-              // }}
               onInput={(e) => Model.checkColor("lum", e)}
               onChange={setLumValue(Model.lum.value)}
             />
@@ -260,16 +224,6 @@ export default function EditorView() {
     y: 200 - Model.lum.value * 2,
   });
 
-  // // changes to color values trigger changes to canvas
-  // const updateCanvas = (x: number, y: number) => {
-  //   // console.log(`squareHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
-  //   setPoint({ x: x, y: y });
-  //   // Model.sat.value = Math.floor(x / 2);
-  //   // Model.lum.value = Math.floor((200 - y) / 2);
-  //   // Model.updateColorValue();
-  //   // Model.updateSwatches();
-  // };
-
   // changes on sat-lum-square trigger changes to color values
   const squareHandler = (x: number, y: number) => {
     console.log(`squareHandler (${point.x}, ${point.y}) => (${x}, ${y})`);
@@ -282,10 +236,7 @@ export default function EditorView() {
 
   const rectHandler = (x: number) => {
     console.log(`rectHandler (${hueValue}) => (${x})`);
-    // setPoint({ x: x, y: y });
     setHueValue(x);
-    // Model.sat.value = Math.floor(x / 2);
-    // Model.lum.value = Math.floor((200 - y) / 2);
     Model.hue.value = x;
     Model.updateColorValue();
     Model.updateSwatches();
@@ -302,8 +253,6 @@ export default function EditorView() {
         <SatLumSquare
           selectedHue={Model.hue.value}
           point={{ x: Model.sat.value * 2, y: 200 - Model.lum.value * 2 }}
-          // width="200"
-          // height="200"
           callback={squareHandler}
         />
         <HueRect selectedHue={Model.hue.value} callback={rectHandler} />

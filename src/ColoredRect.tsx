@@ -3,7 +3,6 @@ import style from "./Editor.module.css";
 
 type SatLumSquareProps = {
   selectedHue: number;
-  // onHueChange: (x: number) => number;
   point: { x: number; y: number };
   width?: number;
   height?: number;
@@ -39,67 +38,37 @@ export function SatLumSquare({
     [movePoint];
 
   function draw(gc: CanvasRenderingContext2D) {
-    // gc.fillStyle = "black";
-    // gc.fillRect(0, 0, gc.canvas.width, gc.canvas.height);
     gc.clearRect(0, 0, width, height);
 
-    // local state point
-    // gc.fillStyle = "red";
-    // gc.beginPath();
-    // gc.arc(movePoint.x, movePoint.y, 5, 0, 2 * Math.PI);
-    // gc.fill();
-
-    // // property  point
-    // // Draw white circle for visibility on dark backgrounds
-    // gc.strokeStyle = "white";
-    // gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
-    // gc.beginPath();
-    // gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-    // gc.stroke();
-
-    // // Draw black circle
-    // gc.strokeStyle = "black";
-    // gc.lineWidth = 2; // Standard width for the black stroke
-    // gc.beginPath();
-    // gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-    // gc.stroke();
-
     if (point.y < 100) {
-      // Draw white circle for visibility on dark backgrounds
+      // draw white circle
       gc.strokeStyle = "white";
-      gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+      gc.lineWidth = 4;
       gc.beginPath();
       gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
       gc.stroke();
 
-      // Draw black circle
+      // draw black circle
       gc.strokeStyle = "black";
-      gc.lineWidth = 2; // Standard width for the black stroke
+      gc.lineWidth = 2;
       gc.beginPath();
       gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
       gc.stroke();
     } else {
-      // Draw white circle for visibility on dark backgrounds
+      // draw black circle
       gc.strokeStyle = "black";
-      gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+      gc.lineWidth = 3;
       gc.beginPath();
       gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
       gc.stroke();
 
-      // Draw black circle
+      // draw white circle
       gc.strokeStyle = "white";
-      gc.lineWidth = 2; // Standard width for the black stroke
+      gc.lineWidth = 2;
       gc.beginPath();
       gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
       gc.stroke();
     }
-
-    // show points
-    // gc.font = "14px sans-serif";
-    // gc.fillStyle = "yellow";
-    // gc.fillText(`${point.x}, ${point.y}`, 8, 20);
-    // gc.fillStyle = "red";
-    // gc.fillText(`${movePoint.x}, ${movePoint.y}`, 8, 20 + 20);
   }
 
   return (
@@ -126,15 +95,12 @@ export function SatLumSquare({
         onMouseMove={moveHandler}
         onClick={clickHandler}
       />
-      {/* <div class={style.huerect} /> */}
     </>
   );
 }
 
 type HueRectProps = {
   selectedHue: number;
-  // onHueChange: (x: number) => number;
-  // point: { x: number; y: number };
   width?: number;
   height?: number;
   callback?: (x: number) => void;
@@ -174,23 +140,20 @@ export function HueRect({
     gc.clearRect(0, 0, width, height);
 
     const currentHue = Math.floor((selectedHue * 200) / 360);
-    // property  point
-    // Draw white circle for visibility on dark backgrounds
+    // draw white rectangle
     gc.strokeStyle = "white";
-    gc.lineWidth = 4; // Slightly wider to ensure it encompasses the black stroke
+    gc.lineWidth = 4;
     gc.beginPath();
     gc.strokeRect(0, currentHue, 20, 5);
     gc.stroke();
 
-    // Draw black circle
+    // Draw black rectangle
     gc.strokeStyle = "black";
     gc.lineWidth = 2;
     gc.beginPath();
     gc.strokeRect(0, currentHue, 20, 5);
     gc.stroke();
   }
-  console.log(selectedHue);
-  //   console.log(200 - (selectedHue / 360) * 200);
   return (
     <canvas
       class={style.huerect}

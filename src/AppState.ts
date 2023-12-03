@@ -34,7 +34,6 @@ function initializeSwatch() {
     sat: satValue,
     lum: lumValue,
     rgb: rgbValue,
-    // hex: rgbToHex(rgbValue.r, rgbValue.g, rgbValue.b),
     hex: rgbToHex(rgbValue),
     focus: false,
   };
@@ -73,15 +72,8 @@ export const selectSwatch = (swatchIndex: number) => {
   sat.value = swatches.value[swatchIndex].sat;
   lum.value = swatches.value[swatchIndex].lum;
 
-  // // update RGB and HEX value for app state
-  // let updatedRGB = hslToRgb(hue.value, sat.value, lum.value);
-  // let updatedHEX = rgbToHex(updatedRGB);
-  // rgb.value = updatedRGB;
-  // hex.value = updatedHEX;
+  // update RGB and HEX value for app state
   updateColorValue();
-  console.log("rgb.value");
-  console.log(rgb.value);
-  console.log(hex.value);
 };
 
 // export const swatches = signal<Swatch[]>([]);
@@ -97,7 +89,6 @@ export const increment = () => {
   count.value++;
   createSwatch();
   selectSwatch(count.value - 1);
-  console.log(swatches.value[count.value - 1]);
 };
 
 export const decrement = () => {
@@ -132,7 +123,6 @@ export const checkColor = (str: string, e: Event) => {
   let degree = input.value;
 
   degree = degree.replace(/\D/g, "");
-  // degree = parseInt((e.target as HTMLInputElement).value, 10);
   degree = parseInt(degree, 10);
 
   console.log(degree);
@@ -158,9 +148,6 @@ export const checkColor = (str: string, e: Event) => {
     lum.value = degree;
   } else if (str === "r") {
     rgb.value.r = degree;
-    // console.log("rftgyr");
-    // console.log(degree);
-    // console.log(rgb.value.r);
   } else if (str === "g") {
     rgb.value.g = degree;
   } else if (str === "b") {
@@ -169,14 +156,7 @@ export const checkColor = (str: string, e: Event) => {
 
   // first update hsl then update rgb and hex
   if (str === "hue" || str === "sat" || str === "lum") {
-    // swatches.value[selected.value - 1].hue = hue.value;
-    // swatches.value[selected.value - 1].sat = sat.value;
-    // swatches.value[selected.value - 1].lum = lum.value;
-
     updateColorValue();
-
-    // swatches.value[selected.value - 1].rgb = rgb.value;
-    // swatches.value[selected.value - 1].hex = hex.value;
   }
   // first update rgb then update hsl and hex
   else if (str === "r" || str === "g" || str === "b") {
@@ -186,22 +166,8 @@ export const checkColor = (str: string, e: Event) => {
     hue.value = updatedHSL.h;
     sat.value = updatedHSL.s;
     lum.value = updatedHSL.l;
-
-    // swatches.value[selected.value - 1].hue = hue.value;
-    // swatches.value[selected.value - 1].sat = sat.value;
-    // swatches.value[selected.value - 1].lum = lum.value;
-
-    // updateColorValue();
-
-    // swatches.value[selected.value - 1].rgb = rgb.value;
-    // swatches.value[selected.value - 1].hex = hex.value;
   }
 
-  // swatches.value[selected.value - 1].hue = hue.value;
-  // swatches.value[selected.value - 1].sat = sat.value;
-  // swatches.value[selected.value - 1].lum = lum.value;
-  // swatches.value[selected.value - 1].rgb = rgb.value;
-  // swatches.value[selected.value - 1].hex = hex.value;
   updateSwatches();
 };
 
@@ -218,44 +184,5 @@ export const updateHex = (text: string) => {
   sat.value = updatedHSL.s;
   lum.value = updatedHSL.l;
 
-  // swatches.value[selected.value - 1].hue = hue.value;
-  // swatches.value[selected.value - 1].sat = sat.value;
-  // swatches.value[selected.value - 1].lum = lum.value;
-  // swatches.value[selected.value - 1].rgb = rgb.value;
-  // swatches.value[selected.value - 1].hex = hex.value;
   updateSwatches();
 };
-
-// local helper function
-// const createSwatch = () => {
-//   let hueValue = Math.floor(Math.random() * 360);
-//   let satValue = Math.floor(Math.random() * 100);
-//   let lumValue = Math.floor(Math.random() * 100);
-//   let rgbValue = hslToRgb(hueValue, satValue, lumValue);
-//   swatches.value = [
-//     ...swatches.value,
-//     {
-//       hue: hueValue,
-//       sat: satValue,
-//       lum: lumValue,
-//       rgb: rgbValue,
-//       hex: rgbToHex(rgbValue.r, rgbValue.g, rgbValue.b),
-//       focus: false,
-//     },
-//     // initializeSwatch(),
-//   ];
-// };
-// // local helper function
-// const createSwatch = () => {
-//   const newSwatch = initializeSwatch();
-//   swatches.value = [...swatches.value, newSwatch];
-// };
-
-// // local helper function
-// // update RGB and HEX value for app state from new HSL value
-// const updateColorValue = () => {
-//   let updatedRGB = hslToRgb(hue.value, sat.value, lum.value);
-//   let updatedHEX = rgbToHex(updatedRGB);
-//   rgb.value = updatedRGB;
-//   hex.value = updatedHEX;
-// };

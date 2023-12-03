@@ -1,6 +1,5 @@
 // app state
 import * as Model from "./AppState";
-// import { swatches } from "./AppState";
 
 import style from "./Swatchview.module.css";
 
@@ -18,7 +17,6 @@ export default function SwatchView({ colour = "grey" }: SwatchViewProps) {
   const handleSwatchClick = (swatchIndex) => {
     setSelectedSwatch(swatchIndex);
     Model.selectSwatch(swatchIndex);
-    // console.log(Model.selected.value);
   };
 
   return (
@@ -28,7 +26,6 @@ export default function SwatchView({ colour = "grey" }: SwatchViewProps) {
           key={i}
           swatch={swatch}
           onClick={() => handleSwatchClick(i)}
-          // isSelected={Model.selected.value - 1 === i}
         />
       ))}
     </div>
@@ -37,6 +34,7 @@ export default function SwatchView({ colour = "grey" }: SwatchViewProps) {
 
 type SwatchItemProps = {
   swatch: Model.Swatch;
+  onClick?: (x: void) => void;
 };
 
 function SwatchItem({ swatch, onClick }: SwatchItemProps) {
@@ -57,5 +55,3 @@ function SwatchItem({ swatch, onClick }: SwatchItemProps) {
     ></div>
   );
 }
-
-// class={style.box}
