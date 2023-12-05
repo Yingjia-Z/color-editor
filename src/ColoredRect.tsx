@@ -40,35 +40,17 @@ export function SatLumSquare({
   function draw(gc: CanvasRenderingContext2D) {
     gc.clearRect(0, 0, width, height);
 
-    if (point.y < 100) {
-      // draw white circle
-      gc.strokeStyle = "white";
-      gc.lineWidth = 4;
-      gc.beginPath();
-      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-      gc.stroke();
+    // draw white circle
+    gc.strokeStyle = "white";
+    gc.beginPath();
+    gc.arc(point.x, point.y, 6, 0, 2 * Math.PI);
+    gc.stroke();
 
-      // draw black circle
-      gc.strokeStyle = "black";
-      gc.lineWidth = 2;
-      gc.beginPath();
-      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-      gc.stroke();
-    } else {
-      // draw black circle
-      gc.strokeStyle = "black";
-      gc.lineWidth = 3;
-      gc.beginPath();
-      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-      gc.stroke();
-
-      // draw white circle
-      gc.strokeStyle = "white";
-      gc.lineWidth = 2;
-      gc.beginPath();
-      gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
-      gc.stroke();
-    }
+    // draw black circle
+    gc.strokeStyle = "black";
+    gc.beginPath();
+    gc.arc(point.x, point.y, 5, 0, 2 * Math.PI);
+    gc.stroke();
   }
 
   return (
