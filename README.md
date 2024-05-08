@@ -1,9 +1,3 @@
-Name: Yingjia Zhang
-
-Student id (i.e. uwaterloo email): y3457zha@uwaterloo.ca
-
-No improvements to consider, all requirements met :)
-
 Note:
 1. The functions in Helper.ts:
    
@@ -20,4 +14,3 @@ Note:
    
    https://www.joshwcomeau.com/css/make-beautiful-gradients/
 
-   Has been clarified in Piazza: https://piazza.com/class/llkwp9ulj9h456/post/306
